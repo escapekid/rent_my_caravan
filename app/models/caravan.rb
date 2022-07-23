@@ -6,4 +6,5 @@ class Caravan < ApplicationRecord
   validates :number_of_guests, presence: true, numericality: { only_integer: true }
 
   belongs_to :user
+  has_many :bookings
 end
