@@ -5,6 +5,7 @@ class CaravansController < ApplicationController
 
   def create
     @caravan = Caravan.new(caravan_params)
+    @caravan.user = current_user
     @caravan.save
     if @caravan.save
       redirect_to caravan_path(@caravan)
