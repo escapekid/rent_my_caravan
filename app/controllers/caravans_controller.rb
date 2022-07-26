@@ -1,4 +1,9 @@
 class CaravansController < ApplicationController
+ 
+  def index
+    @caravans = Caravan.all
+  end
+  
   def new
     @caravan = Caravan.new
   end
