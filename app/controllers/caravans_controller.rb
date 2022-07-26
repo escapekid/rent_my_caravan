@@ -1,9 +1,9 @@
 class CaravansController < ApplicationController
- 
+
   def index
     @caravans = Caravan.all
   end
-  
+
   def new
     @caravan = Caravan.new
   end
@@ -22,6 +22,6 @@ class CaravansController < ApplicationController
   private
 
   def caravan_params
-    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests)
+    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests, :photo)
   end
 end
