@@ -1,9 +1,9 @@
 class CaravansController < ApplicationController
- 
+
   def index
     @caravans = Caravan.all
   end
-  
+
   def new
     @caravan = Caravan.new
   end
@@ -17,6 +17,10 @@ class CaravansController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @caravan = Caravan.find(params[:id])
   end
 
   private
