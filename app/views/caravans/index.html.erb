@@ -2,10 +2,15 @@
   <h1>All our caravans (<%= Caravan.count %>)</h1>
   <div class="row">
       <% @caravans.each do |caravan| %>
-        <%= link_to caravan_path(caravan) do %>
-          <div class="col-3">
-          <div class="card h-100">
-            <div class="card-image" style="background-image: url(https://images.unsplash.com/photo-1597192535374-aeba30156218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80)" >
+      <div class="col-3">
+        <div class="card h-100">
+          <div class="card-image" style= "background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("photo-1597192535374-aeba30156218_fgalot.avif") %>)"></div>
+          <div class="card-body">
+            <h4 class="card-title"><%= caravan.name %></h4>
+            <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
+            <div class="flex">
+              <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %><%# fix font awesome icon line 13 %>
+              <i class="fas fa-euro-sign"></i> <%= caravan.price %>
             </div>
             <div class="card-body">
               <h4 class="card-title"><%= caravan.name %></h4>
@@ -23,3 +28,6 @@
     </div>
   </div>
 </div>
+
+
+<%# linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), %>
