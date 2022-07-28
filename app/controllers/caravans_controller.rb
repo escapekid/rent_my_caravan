@@ -34,6 +34,6 @@ class CaravansController < ApplicationController
   private
 
   def caravan_params
-    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests)
+    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests, :photo)
   end
 end
