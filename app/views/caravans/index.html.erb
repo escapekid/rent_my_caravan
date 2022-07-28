@@ -4,8 +4,7 @@
       <% @caravans.each do |caravan| %>
       <div class="col-3">
         <div class="card h-100">
-          <div class="card-image" style="background-image: url(https://images.unsplash.com/photo-1597192535374-aeba30156218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80)">
-          </div>
+          <div class="card-image" style= "background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("photo-1597192535374-aeba30156218_fgalot.avif") %>)"></div>
           <div class="card-body">
             <h4 class="card-title"><%= caravan.name %></h4>
             <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
@@ -22,3 +21,6 @@
     </div>
   </div>
 </div>
+
+
+<%# linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), %>
