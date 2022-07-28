@@ -1,4 +1,5 @@
 class CaravansController < ApplicationController
+  before_action :set_caravan, only: [:show, :destroy]
 
   def index
     @caravans = Caravan.all
@@ -23,15 +24,19 @@ class CaravansController < ApplicationController
     @caravan = Caravan.find(params[:id])
   end
 
-  # def destroy
-  #   if @caravan.destroy
-  #     redirect_to caravan_path(@caravan)
-  #   else
-  #     render :index
-  #   end
-  # end
+  def destroy
+    if @caravan.destroy
+      redirect_to caravan_path(@caravan)
+    else
+      render :index
+    end
+  end
 
   private
+
+  def set_caravan
+    @boat = Caravan.find(params[:id])
+  end
 
   def caravan_params
     params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests)
