@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :pages, only:[:dashboard]
+  get 'dashboard', to: 'pages#dashboard'
   resources :caravans, only:[:new, :create, :show, :index, :destroy] do
     resources :bookings, only:[:new, :show, :create]
   end
