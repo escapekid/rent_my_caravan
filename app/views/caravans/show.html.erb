@@ -3,4 +3,13 @@
 <p><%= @caravan.price%></p>
 <p><%= @caravan.address%></p>
 <p><%= @caravan.number_of_guests%></p>
-<%# <p><%= @caravan.first_name @caravan.last_name%>
+<%# only works after changing the show method in caravan controller %>
+<p><%= @caravan.user.first_name @caravan.user.last_name%> %>
+<br>
+<% if @caravan.user = current_user %>
+  <%= link_to new_caravan_path do %>
+    <i class="fa-solid fa-trash-can"></i>
+  <% end %>
+<% else  %>
+  <%= link_to new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
+<% end %>

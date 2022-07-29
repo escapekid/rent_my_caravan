@@ -20,6 +20,7 @@ class CaravansController < ApplicationController
   end
 
   def show
+    # need to add set_user method to find a user/user_id
     @caravan = Caravan.find(params[:id])
   end
 
