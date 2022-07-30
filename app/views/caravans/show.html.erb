@@ -1,4 +1,5 @@
 <div class="container">
+<%# caravan-card %>
   <h2><%= @caravan.name %></h2>
   <div class="card-trip">
     <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key) : cl_image_tag("caravan.avif") %>
