@@ -1,7 +1,8 @@
 <div class="container">
+<%# caravan-card %>
   <h2><%= @caravan.name %></h2>
   <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key) : cl_image_tag("caravan.avif") %>
     <div class="card-trip-infos">
       <div>
        <h2><%= @caravan.description %></h2>
@@ -23,6 +24,6 @@
       </div>
     <% end %>
   <% else  %>
-    <%= link_to new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
+    <%= link_to "Book the caravan", new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
   <% end %>
 </div>
