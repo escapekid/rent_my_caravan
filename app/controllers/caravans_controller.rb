@@ -35,7 +35,7 @@ class CaravansController < ApplicationController
   private
 
   def set_caravan
-    @boat = Caravan.find(params[:id])
+    @caravan = Caravan.find(params[:id])
   end
 
   def caravan_params
