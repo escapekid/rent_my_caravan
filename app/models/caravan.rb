@@ -6,5 +6,5 @@ class Caravan < ApplicationRecord
   validates :number_of_guests, presence: true, numericality: { only_integer: true }
   has_one_attached :photo
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 end

@@ -21,12 +21,11 @@ class CaravansController < ApplicationController
   end
 
   def show
-    @caravan = Caravan.find(params[:id])
   end
 
   def destroy
     if @caravan.destroy
-      redirect_to caravan_path(@caravan)
+      redirect_to caravans_path
     else
       render :index
     end
