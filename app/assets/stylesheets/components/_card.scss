@@ -5,6 +5,20 @@
 }
 
 
-i {
-  color: black;
+.card-title{
+  color: $gray;
+}
+
+
+a:link, a:visited {
+text-decoration: none;
+}
+
+// i {
+//   color: black;
+// }
+
+.card-subtitle, .card-info{
+  color: $gray;
+  text-decoration: none;
 }
