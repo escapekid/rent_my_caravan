@@ -1,15 +1,17 @@
-<h2><%= @caravan.name %></h2>
-<p><%= @caravan.description %></p>
-<p><%= @caravan.price%></p>
-<p><%= @caravan.address%></p>
-<p><%= @caravan.number_of_guests%></p>
+<div class="container">
+  <h2><%= @caravan.name %></h2>
+  <p><%= @caravan.description %></p>
+  <p><%= @caravan.price%></p>
+  <p><%= @caravan.address%></p>
+  <p><%= @caravan.number_of_guests%></p>
 
-<p>Owner: <%= @caravan.user.first_name %> <%= @caravan.user.last_name %> </p>
-<br>
-<% if @caravan.user = current_user %>
-  <%= link_to caravan_path, method: :delete do %>
-    <i class="fa-solid fa-trash-can"></i>
+  <p>Owner: <%= @caravan.user.first_name %> <%= @caravan.user.last_name %> </p>
+  <br>
+  <% if @caravan.user = current_user %>
+    <%= link_to caravan_path, method: :delete do %>
+      <i class="fa-solid fa-trash-can"></i>
+    <% end %>
+  <% else  %>
+    <%= link_to new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
   <% end %>
-<% else  %>
-  <%= link_to new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
-<% end %>
+</div>
