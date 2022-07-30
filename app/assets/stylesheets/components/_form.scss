@@ -1,0 +1,9 @@
+.form-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-container .item {
+ flex-basis: 40%;
+ margin-inline-end: 15px;
+}
