@@ -3,15 +3,15 @@
   <div class="row">
       <% @caravans.each do |caravan| %>
         <%= link_to caravan_path(caravan) do %>
-          <div class="col-3">
+          <div class="col-sm-2 col-lg-4" >
             <div class="card h-100">
               <div class="card-image" style= "background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("photo-1597192535374-aeba30156218_fgalot.avif") %>)">
               </div>
               <div class="card-body">
                 <h4 class="card-title"><%= caravan.name %></h4>
-                <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
-                <div class="flex">
-                  <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %><%# fix font awesome icon line 13 %>
+                <h6 class="card-subtitle mb-2"><%= caravan.address %></h6>
+                <div class="card-info flex">
+                  <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %>
                   <i class="fas fa-euro-sign"></i> <%= caravan.price %>
                 </div>
               </div>
@@ -24,6 +24,3 @@
     </div>
   </div>
 </div>
-
-
-<%# linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), %>
