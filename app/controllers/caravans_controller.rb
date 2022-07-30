@@ -3,6 +3,13 @@ class CaravansController < ApplicationController
 
   def index
     @caravans = Caravan.all
+    @markers = @caravans.geocoded.map do |caravan|
+      {
+        lat: caravan.latitude,
+        lng: caravan.longitude
+      }
+    end
+
   end
 
   def new
