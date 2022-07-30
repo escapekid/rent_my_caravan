@@ -7,7 +7,7 @@
 <p>Owner: <%= @caravan.user.first_name %> <%= @caravan.user.last_name %> </p>
 <br>
 <% if @caravan.user = current_user %>
-  <%= link_to caravan_path, method: :destroy do %>
+  <%= link_to caravan_path, method: :delete do %>
     <i class="fa-solid fa-trash-can"></i>
   <% end %>
 <% else  %>
