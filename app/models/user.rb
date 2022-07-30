@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :caravans
   has_many :bookings
+  has_one_attached :avatar
 end

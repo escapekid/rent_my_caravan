@@ -3,11 +3,11 @@
 <p><%= @caravan.price%></p>
 <p><%= @caravan.address%></p>
 <p><%= @caravan.number_of_guests%></p>
-<%# only works after changing the show method in caravan controller %>
-<p><%= @caravan.user.first_name @caravan.user.last_name%> %>
+
+<p>Owner: <%= @caravan.user.first_name %> <%= @caravan.user.last_name %> </p>
 <br>
 <% if @caravan.user = current_user %>
-  <%= link_to new_caravan_path do %>
+  <%= link_to caravan_path, method: :destroy do %>
     <i class="fa-solid fa-trash-can"></i>
   <% end %>
 <% else  %>
