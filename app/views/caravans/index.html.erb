@@ -1,5 +1,14 @@
 <div class="container">
   <h1>All our caravans (<%= Caravan.count %>)</h1>
+
+  <%# Banner for creating a new caravan %>
+  <div class="banner" style="background: linear-gradient(164deg, rgba(230,156,152,1) 0%, rgba(230,89,81,1) 100%);">
+    <div class="container">
+      <p>You have a caravan you like to offer?</p>
+      <%= link_to "Create a caravan!", new_caravan_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
   <div class="row">
     <% @caravans.each do |caravan| %>
     <div class="col-3">
@@ -15,8 +24,6 @@
             <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %>
             <i class="fas fa-euro-sign"></i> <%= caravan.price %>
           </div>
-        </div>
-        <div class="card-footer">
         </div>
       </div>
       <% end %>
