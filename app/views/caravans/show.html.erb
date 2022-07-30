@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <% if @caravan.user = current_user %>
+  <% if @caravan.user == current_user %>
     <%= link_to caravan_path, method: :delete do %>
       <div class="btn btn-info">
         <i class="fa-solid fa-trash-can"> </i>
