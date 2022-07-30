@@ -6,7 +6,7 @@
       <%= link_to caravan_path(caravan) do %>
       <div class="card h-100">
         <div class="card-image"
-          style="background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("photo-1597192535374-aeba30156218_fgalot.avif") %>)">
+          style="background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("caravan.avif") %>)">
         </div>
         <div class="card-body">
           <h4 class="card-title"><%= caravan.name %></h4>
