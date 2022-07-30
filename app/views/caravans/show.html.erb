@@ -1,15 +1,26 @@
 <div class="container">
   <h2><%= @caravan.name %></h2>
-  <p><%= @caravan.description %></p>
-  <p><%= @caravan.price%></p>
-  <p><%= @caravan.address%></p>
-  <p><%= @caravan.number_of_guests%></p>
+  <div class="card-trip">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <div class="card-trip-infos">
+      <div>
+       <h2><%= @caravan.description %></h2>
+       <p><%= @caravan.address%></p>
+      </div>
+      <div>
+        <h2 class="card-trip-pricing fas fa-user-group"> <%= @caravan.number_of_guests%></h2>
+        <h2 class="card-trip-pricing fas fa-euro-sign"> <%= @caravan.price%></h2>
+      </div>
+      <%= @user.avatar.attached? ? cl_image_tag(@user.avatar.key, class: "card-trip-user avatar-bordered") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "card-trip-user avatar-bordered") %>
+      <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
+    </div>
+  </div>
 
-  <p>Owner: <%= @caravan.user.first_name %> <%= @caravan.user.last_name %> </p>
-  <br>
   <% if @caravan.user = current_user %>
     <%= link_to caravan_path, method: :delete do %>
-      <i class="fa-solid fa-trash-can"></i>
+      <div class="btn btn-info">
+        <i class="fa-solid fa-trash-can"> </i>
+      </div>
     <% end %>
   <% else  %>
     <%= link_to new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
