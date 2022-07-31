@@ -3,7 +3,7 @@
 
   <p>Register and join the la caravan community.</p>
 
-  <div class="container">
+  <div class="container ms-5 d-flex justify-content-start">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
 
@@ -31,7 +31,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Sign up" %>
+        <%= f.button :submit, "Sign up", class: "btn btn-success" %>
       </div>
     <% end %>
   </div>
