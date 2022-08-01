@@ -1,17 +1,21 @@
 
-
-  <div class="px-4 py-5 text-center">
-    <h1 class="display-5 fw-bold">Rent my Caravan</h1>
-    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/9143498/pexels-photo-9143498.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
-      <div class="container">
-        <h1>Searching for a unique trip or junst want to share your caravan?</h1>
-        <p>Rent a caravan and start your own little adventure. Or create a caravan to share it with others when you don't use it.</p>
-        <div class="button-container">
-          <%= link_to "Discover our caravans", caravans_path, class: "btn btn-primary" %>
-          <%= link_to "Create a caravan!", new_caravan_path, class: "btn btn-primary" %>
-        </div>
-      </div>
+<br>
+<div class="banner my-6" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/9143498/pexels-photo-9143498.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);">
+  <div class="container text-center">
+    <h1>Searching for a unique trip?</h1>
+    <p>Rent a caravan and start your own little adventure. </p>
+    <div class="button-container">
+      <%= link_to "Discover our caravans", caravans_path, class: "button-success-flat" %>
     </div>
+  </div>
+</div>
+<div class="container text-center my-6">
+  <h2>Or junst want to share your caravan?</h2>
+  <p>Create a caravan to share it with others when you don't use it. </p>
+  <%= link_to "Create a caravan!", new_caravan_path, class: "button" %>
+
+</div>
+
     <%# <div class="col-lg-6 mx-auto">
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
       <p>My call to action</p>
