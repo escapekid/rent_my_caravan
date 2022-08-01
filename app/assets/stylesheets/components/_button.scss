@@ -1,0 +1,69 @@
+/* From uiverse.io by @adamgiebl */
+.button {
+  color: #090909;
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  border-radius: 0.2em;
+  background: #DCDCDC;
+  border: 1px solid #DCDCDC;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px #ffffff;
+}
+
+.button:hover {
+  border: 1px solid white;
+  color: #696969;
+}
+
+.button:active {
+  box-shadow: 4px 4px 12px #c5c5c5,
+              -4px -4px 12px white;
+  color: #696969;
+}
+
+.button-success {
+  color: #F4F4F4;
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  border-radius: 0.2em;
+  background: #e60f04;
+  border: 1px solid #e60f04;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px white;
+}
+
+.button-success:hover {
+  border: 1px solid #ff3932;
+  background: #ff413a;
+  color: white;
+}
+
+.button-success:active {
+  box-shadow: 4px 4px 12px #c5c5c5,
+              -4px -4px 12px white;
+  background: #ff413a;
+  color: white;
+}
+
+.button-success-flat {
+  color: #F4F4F4;
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  border-radius: 0.2em;
+  background: #e60f04;
+  border: 1px solid #e60f04;
+  transition: all .3s;
+}
+
+.button-success-flat:hover {
+  border: 1px solid #ff3932;
+  background: #ff413a;
+  color: white;
+}
+
+.button-success-flat:active {
+  background: #ff413a;
+  color: white;
+}
