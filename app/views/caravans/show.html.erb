@@ -1,29 +1,39 @@
 <div class="container">
-<%# caravan-card %>
-  <h2><%= @caravan.name %></h2>
-  <div class="card-trip">
-    <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key) : cl_image_tag("caravan.avif") %>
-    <div class="card-trip-infos">
-      <div>
-       <h2><%= @caravan.description %></h2>
-       <p><%= @caravan.address%></p>
+  <div class="row">
+    <div class="col">
+      <h2><%= @caravan.name %></h2>
+        <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key, effect: "shadow:90", :x=>15, :y=>15, :color=>"#0000001a") : cl_image_tag("caravan.avif", effect:"shadow:90", :x=>15, :y=>15, color:"#0000001a") %>
+        <div class="card-trip-infos">
+          <div>
+          <h4><%= @caravan.description %></h4>
+          <p><%= @caravan.address%></p>
+          </div>
+          <div>
+            <h2 class="card-trip-pricing fas fa-user-group"> <%= @caravan.number_of_guests%></h2>
+            <h2 class="card-trip-pricing fas fa-euro-sign"> <%= @caravan.price%></h2>
+          </div>
+          <%= @user.avatar.attached? ? cl_image_tag(@user.avatar.key, class: "card-trip-user avatar-bordered") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "card-trip-user avatar-bordered") %>
+          <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
       </div>
-      <div>
-        <h2 class="card-trip-pricing fas fa-user-group"> <%= @caravan.number_of_guests%></h2>
-        <h2 class="card-trip-pricing fas fa-euro-sign"> <%= @caravan.price%></h2>
-      </div>
-      <%= @user.avatar.attached? ? cl_image_tag(@user.avatar.key, class: "card-trip-user avatar-bordered") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "card-trip-user avatar-bordered") %>
-      <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
+
+    </div>
+    <div class="col-3">
+      <% if @caravan.user == current_user %>
+        <%= link_to caravan_path, method: :delete do %>
+          <div class="btn btn-info">
+            <i class="fa-solid fa-trash-can"> </i>
+          </div>
+        <% end %>
+      <% else  %>
+        <h1>Book this caravan</h1>
+        <div class="container">
+          <%= simple_form_for [ @caravan, @booking] do |f| %>
+            <%= f.input :start_date, html5: true %>
+            <%= f.input :end_date, html5: true %>
+            <%= f.submit "Book now", class: "btn btn-success" %>
+          <% end%>
+        </div>
+      <% end %>
     </div>
   </div>
-
-  <% if @caravan.user == current_user %>
-    <%= link_to caravan_path, method: :delete do %>
-      <div class="btn btn-info">
-        <i class="fa-solid fa-trash-can"> </i>
-      </div>
-    <% end %>
-  <% else  %>
-    <%= link_to "Book the caravan", new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
-  <% end %>
 </div>
