@@ -1,20 +1,27 @@
-<h2>Log in</h2>
+<div class="container">
+  <h1>Log in</h1>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+  <p>Welcome back! Log in to join the la caravan community.</p>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  <div class="container ms-5 d-flex justify-content-start">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "button" %>
+      </div>
+    <% end %>
+    </div>
+    <div class="container ms-5 mt-3 d-flex justify-content-start">
+    <%= render "devise/shared/links" %>
+    </div>
+</div>
