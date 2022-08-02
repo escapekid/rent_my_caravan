@@ -1,0 +1,12 @@
+<%= link_to caravan_path(caravan), class:"text-decoration-none border-0" do %>
+      <div class="h-100 ">
+        <%= caravan.photo.attached? ? cl_image_tag(caravan.photo.key, crop: :fill, class:"card-img-top") : cl_image_tag("caravan.avif") %>
+        <div class="card-body">
+          <h4 class="card-title"><%= caravan.name.capitalize %></h4>
+          <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address.capitalize %></h6>
+          <div class="card-info">
+            <i class="fas fa-euro-sign"></i><%= caravan.price %> per night
+          </div>
+        </div>
+      </div>
+      <% end %>

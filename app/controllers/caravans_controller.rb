@@ -6,7 +6,8 @@ class CaravansController < ApplicationController
     @markers = @caravans.geocoded.map do |caravan|
       {
         lat: caravan.latitude,
-        lng: caravan.longitude
+        lng: caravan.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { caravan: caravan })
       }
     end
 
