@@ -1,38 +1,45 @@
 <div class="container">
   <h1>All our caravans (<%= Caravan.count %>)</h1>
 
-  <%# Banner for creating a new caravan %>
-  <div class="banner-small" style="background: linear-gradient(164deg, rgba(230,156,152,1) 0%, rgba(230,89,81,1) 100%);">
-    <div class="container">
-      <p>You have a caravan you like to offer?</p>
-      <%= link_to "Create a caravan!", new_caravan_path, class: "btn btn-primary" %>
-    </div>
-  </div>
-
   <div class="row">
-    <% @caravans.each do |caravan| %>
-    <div class="col-3 mb-3">
-      <%= link_to caravan_path(caravan) do %>
-      <div class="card h-100 ">
-        <div class="card-image"
-          style="background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("caravan.avif") %>)">
-        </div>
-        <div class="card-body">
-          <h4 class="card-title"><%= caravan.name %></h4>
-          <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
-          <div class="card-info flex">
-            <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %>
-            <i class="fas fa-euro-sign"></i> <%= caravan.price %>
+    <div class="col-7">
+      <div class="row">
+        <% @caravans.each do |caravan| %>
+          <div class="col-6 mb-3">
+            <%= link_to caravan_path(caravan) do %>
+            <div class="card h-100 ">
+              <div class="card-image"
+                style="background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("caravan.avif") %>)">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title"><%= caravan.name %></h4>
+                <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
+                <div class="card-info flex">
+                  <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %>
+                  <i class="fas fa-euro-sign"></i> <%= caravan.price %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="card-link">
+        <div class="container">
+          <h3>You have your own caravan?</h3>
+          <p>Share it with others and pave the way for unforgetable adventures.</p>
+          <div class="d-grid text-center">
+            <%= link_to "Create a caravan!", new_caravan_path, class: "button btn-block" %>
           </div>
         </div>
       </div>
-      <% end %>
+      <div style="width: 100%; height: 600px;"
+        data-controller="mapbox"
+        data-mapbox-markers-value="<%= @markers.to_json %>"
+        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
-    <% end %>
   </div>
-
-  <div style="width: 100%; height: 600px;"
-  data-controller="mapbox"
-  data-mapbox-markers-value="<%= @markers.to_json %>"
-  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
