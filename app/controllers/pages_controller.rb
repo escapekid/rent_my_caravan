@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    @caravans = Caravan.where(user: @user)
   end
 end
