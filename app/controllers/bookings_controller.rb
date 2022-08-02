@@ -1,7 +1,9 @@
 class BookingsController < ApplicationController
+
   before_action :set_caravan, only: [:new, :create, :update]
   before_action :set_booking, only: [:update, :destroy]
   # before_save :set_not_confirmed
+
   def new
     @booking = Booking.new
   end
@@ -26,8 +28,13 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking.destroy
-    redirect_to dashboard_path
+    @booking = Booking.find(params[:id])
+    @caravan = @booking.caravan
+    if @booking.destroy
+      redirect_to dashboard_path
+    else
+      render :dashboard
+    end
   end
 
   private
@@ -35,6 +42,7 @@ class BookingsController < ApplicationController
   def booking_params
     params[:booking].permit(:start_date, :end_date, :caravan_id, :confirmed, :user_id)
   end
+
 
   def set_caravan
     @caravan = Caravan.find(params[:caravan_id])
