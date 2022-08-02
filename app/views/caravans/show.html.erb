@@ -36,5 +36,13 @@
       <% end %>
     </div>
   </div>
-  <%= link_to "back", caravans_path, class:"button" %>
+  <% if @caravan.user == current_user %>
+    <%= link_to caravan_path, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <div class="btn btn-info">
+        <i class="fa-solid fa-trash-can"> </i>
+      </div>
+    <% end %>
+  <% else  %>
+    <%= link_to "Book the caravan", new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
+  <% end %>
 </div>
