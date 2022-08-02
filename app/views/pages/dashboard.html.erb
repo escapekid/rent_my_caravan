@@ -3,26 +3,53 @@
 
   <p>Here are your current bookings:</p>
   <div class="container">
-
     <table class="table">
-        <thead>
-          <tr >
-            <th>Caravan</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <%# <th colspan="3"></th> %>
+      <thead>
+        <tr >
+          <th>Caravan</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th colspan="3">Booking status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.caravan.name %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td>
+            <td><%= booking.confirmed? ? "Confirmed" : "Reservation pending" %></td>
           </tr>
-        </thead>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-        <tbody>
-          <% @user.bookings.each do |booking| %>
+  <p>These bookings are awaiting your confirmation:</p>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr >
+          <th>Caravan</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Guest</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @caravans.each do |caravan| %>
+          <% caravan.bookings.each do |booking| %>
             <tr>
               <td><%= booking.caravan.name %></td>
               <td><%= booking.start_date %></td>
               <td><%= booking.end_date %></td>
+              <td><%= booking.user.first_name %></td>
+              <td><%= booking.confirmed? ? "Confirmed" : "Reservation pending" %></td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

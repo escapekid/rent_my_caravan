@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_caravan, only: [:new, :create]
+  # before_save :set_not_confirmed
   def new
     @booking = Booking.new
   end
@@ -11,11 +12,15 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.caravan = @caravan
+    @booking.confirmed = false
     if @booking.save
       redirect_to caravan_path(@caravan)
     else
       render :new
     end
+  end
+
+  def update
   end
 
   private
@@ -26,5 +31,10 @@ class BookingsController < ApplicationController
 
   def set_caravan
     @caravan = Caravan.find(params[:caravan_id])
+  end
+
+  def set_not_confirmed
+    @booking.confirmed = false
+    true
   end
 end
