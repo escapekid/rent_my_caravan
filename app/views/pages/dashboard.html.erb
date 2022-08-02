@@ -44,8 +44,12 @@
               <td><%= booking.caravan.name %></td>
               <td><%= booking.start_date %></td>
               <td><%= booking.end_date %></td>
-              <td><%= booking.user.first_name %></td>
-              <td><%= booking.confirmed? ? "Confirmed" : "Reservation pending" %></td>
+              <td><%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></td>
+              <td><% if booking.confirmed %>
+                <% else %>
+                <%= link_to "Confirm", caravan_booking_path(caravan, booking), method: :put, class:"button" %>
+                <% end %>
+                <%= link_to "Cancel", caravan_booking_path(caravan, booking), method: :delete %></td>
             </tr>
           <% end %>
         <% end %>

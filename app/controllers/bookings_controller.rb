@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_caravan, only: [:new, :create]
+  before_action :set_caravan, only: [:new, :create, :update]
+  before_action :set_booking, only: [:update, :destroy]
   # before_save :set_not_confirmed
   def new
     @booking = Booking.new
@@ -21,16 +22,26 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking.update(confirmed: true)
+  end
+
+  def destroy
+    @booking.destroy
+    redirect_to dashboard_path
   end
 
   private
 
   def booking_params
-    params[:booking].permit(:start_date, :end_date, :caravan_id)
+    params[:booking].permit(:start_date, :end_date, :caravan_id, :confirmed, :user_id)
   end
 
   def set_caravan
     @caravan = Caravan.find(params[:caravan_id])
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 
   def set_not_confirmed
