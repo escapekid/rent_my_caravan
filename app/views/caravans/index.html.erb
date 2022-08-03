@@ -5,6 +5,32 @@
     <div class="col-7">
       <div class="row">
         <% @caravans.each do |caravan| %>
+          <%= link_to caravan_path(caravan) do %>
+            <div class="card-product">
+              <%= caravan.photo.attached? ? cl_image_tag(caravan.photo.key) : cl_image_tag("caravan.avif") %>
+              <div class="card-product-infos">
+                <h2><%= caravan.name %></h2>
+                <div class='d-fex'>
+                  <div class="d-flex me-auto">
+                    <p><%= caravan.address %></p>
+                  </div>
+                  <div class="d-flex">
+                    <p class="fas fa-user-group me-2"></p>
+                    <p><%= caravan.number_of_guests %></p>
+                  </div>
+                  <div class="d-flex">
+                    <p class="fas fa-euro-sign me-2"></p>
+                    <p><%= caravan.price %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <% @caravans.each do |caravan| %>
           <div class="col-6 mb-3">
             <%= link_to caravan_path(caravan) do %>
             <div class="card h-100 ">
