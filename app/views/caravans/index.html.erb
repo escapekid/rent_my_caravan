@@ -2,31 +2,42 @@
   <h1>All our caravans (<%= Caravan.count %>)</h1>
 
   <div class="row">
-    <div class="col-7">
-      <div class="row">
+    <div class="col-6">
+      <div class="row mt-5">
         <% @caravans.each do |caravan| %>
-          <div class="col-6 mb-3">
-            <%= link_to caravan_path(caravan) do %>
-            <div class="card h-100 ">
-              <div class="card-image"
-                style="background-image: url(<%= caravan.photo.attached? ? cl_image_path(caravan.photo.key) : cl_image_path("caravan.avif") %>)">
-              </div>
-              <div class="card-body">
-                <h4 class="card-title"><%= caravan.name %></h4>
-                <h6 class="card-subtitle mb-2 text-muted"><%= caravan.address %></h6>
-                <div class="card-info flex">
-                  <i class="fas fa-user-group"></i> <%= caravan.number_of_guests %>
-                  <i class="fas fa-euro-sign"></i> <%= caravan.price %>
+          <%= link_to caravan_path(caravan) do %>
+            <div class="card-product">
+              <%= caravan.photo.attached? ? cl_image_tag(caravan.photo.key) : cl_image_tag("caravan.avif") %>
+              <div class="card-product-infos w-100">
+                <h2><%= caravan.name %></h2>
+                <div class="description">
+                  <p><%= caravan.description %></p>
+                </div>
+                <div class='d-flex justify-content-end'>
+                  <div class='d-flex me-4'>
+                    <p class="fas fa-map-marker-alt me-2"></p>
+                    <%# add only the city and not the whole :address %>
+                    <% geo_localization = "#{caravan.latitude},#{caravan.longitude}" %>
+                    <p><%= Geocoder.search(geo_localization).first.city %></p>
+                  </div>
+                  <div class='d-flex me-4'>
+                    <p class="fas fa-user-group me-2"></p>
+                    <p><%= caravan.number_of_guests %></p>
+                  </div>
+                  <div class='d-flex'>
+                    <p class="fas fa-euro-sign me-2"></p>
+                    <p><%= caravan.price %></p>
+                  </div>
                 </div>
               </div>
             </div>
-            <% end %>
-          </div>
           <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="col-5">
-      <div>
+
+    <div class="col-6">
+      <div class="mb-1">
         <h3>Discover all Caravans available:</h3>
       </div>
       <div class="map-container">
