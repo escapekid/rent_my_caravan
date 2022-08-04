@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <h2><%= @caravan.name %></h2>
+        <div class="d-inline-flex ">
+          <h2><%= @caravan.name %></h2>
+          <%= link_to caravans_path do %>
+            <div class="button d-flex ms-3"><i class="fas fa-arrow-alt-to-left"></i> Back to list</div>
+          <% end %>
+        </div>
         <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key, effect: "shadow:90", :x=>15, :y=>15, :color=>"#0000001a") : cl_image_tag("caravan.avif", effect:"shadow:90", :x=>15, :y=>15, color:"#0000001a") %>
       <div class="d-flex my-2 py-2">
         <%= @caravan.user.avatar.attached? ? cl_image_tag(@caravan.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
@@ -13,6 +18,11 @@
       <div class="bg-dark text-dark bg-opacity-10 p-3 my-4 d-flex justify-content-evenly">
         <h3 class="card-trip-pricing fas fa-user-group"> <%= @caravan.number_of_guests%></h3>
         <h3 class="card-trip-pricing fas fa-euro-sign"> <%= @caravan.price%></h3>
+        <% if @caravan.availability %>
+           <h3 class="card-trip-pricing">Available: <i class="fas fa-check-circle" style="color: #1EDD88"></i></h3>
+        <% else %>
+          <h3 class="card-trip-pricing">Available: <i class="fas fa-times-circle" style="color: #e60f04"></i></h3>
+        <% end %>
       </div>
         <h3>About</h3>
         <p><%= @caravan.description %></p>
@@ -20,8 +30,9 @@
     <div class="col-3">
       <% if @caravan.user == current_user %>
         <%= link_to caravan_path, method: :delete do %>
-          <div class="btn btn-info">
+          <div class="button-success-flat d-flex">
             <i class="fa-solid fa-trash-can"> </i>
+            <p>Delete your caravan</p>
           </div>
         <% end %>
       <% else  %>
@@ -30,10 +41,17 @@
           <%= simple_form_for [ @caravan, @booking] do |f| %>
           <%= f.input :start_date, html5: true %>
           <%= f.input :end_date, html5: true %>
-          <%= f.submit "Book now", class: "button-success-flat" %>
+          <%= f.submit "Book now", class: "button-success-flat btn-block" %>
           <% end%>
         </div>
       <% end %>
     </div>
   </div>
+  <div class="container">
+  <h2>Review of caravan</h1>
+  <% @caravan.reviews.each do |review| %>
+   <%= review.content %>
+   <%= review.rating %>
+   <% end %>
+ </div>
 </div>
