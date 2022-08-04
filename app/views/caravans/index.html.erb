@@ -26,6 +26,16 @@
       </div>
     </div>
     <div class="col-5">
+      <div>
+        <h3>Discover all Caravans available:</h3>
+      </div>
+      <div class="map-container">
+        <div class='map'
+        data-controller="mapbox"
+        data-mapbox-markers-value="<%= @markers.to_json %>"
+        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+      </div>
       <div class="card-link">
         <div class="container">
           <h3>You have your own caravan?</h3>
@@ -34,12 +44,6 @@
             <%= link_to "Create a caravan!", new_caravan_path, class: "button btn-block" %>
           </div>
         </div>
-      </div>
-      <div style="width: 100%; height: 600px;"
-        data-controller="mapbox"
-        data-mapbox-markers-value="<%= @markers.to_json %>"
-        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
     </div>
   </div>
 </div>
