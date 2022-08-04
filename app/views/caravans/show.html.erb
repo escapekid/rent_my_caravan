@@ -45,5 +45,10 @@
   <% else  %>
     <%= link_to "Book the caravan", new_caravan_booking_path(@caravan), class:"btn btn-primary" %>
   <% end %>
-
-</div>
+  <div class="container">
+  <h2>Review of caravan</h1>
+  <% @caravan.reviews.each do |review| %>
+   <%= review.content %>
+   <%= review.rating %>
+   <% end %>
+ </div>
