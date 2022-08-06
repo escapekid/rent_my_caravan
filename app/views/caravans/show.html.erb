@@ -38,7 +38,7 @@
             <p class="button-success-flat d-flex justify-content-center"><i class="fa-solid fa-trash-can"> </i> Delete your caravan</p>
         <% end %>
       <% else  %>
-        <div class="border border-secondary p-2 rounded-2">
+        <div class="border border-secondary mt-3 p-2 rounded-2 position-sticky top-0">
           <h1>Book this caravan</h1>
           <div class="container">
             <%= simple_form_for [ @caravan, @booking] do |f| %>
