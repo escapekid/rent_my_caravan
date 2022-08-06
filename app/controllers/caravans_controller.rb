@@ -3,6 +3,7 @@ class CaravansController < ApplicationController
 
   def index
     @caravans = Caravan.all
+    # @caravans = @caravans.order(price: :desc)
     @markers = @caravans.geocoded.map do |caravan|
       {
         lat: caravan.latitude,
@@ -30,6 +31,7 @@ class CaravansController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
   end
 
   def destroy
