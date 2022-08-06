@@ -52,21 +52,23 @@
     </div>
   </div>
 
-<<<<<<< HEAD
- </div>
-=======
-  <div id="reviews">
-    <li><%= link_to "add a review",  new_caravan_review_path(@caravan) %></li>
+ <div id="reviews">
+    <%= link_to "add a review",  new_caravan_review_path(@caravan), class:"button my-1" %>
     <% if @caravan.reviews.blank? %>
       Be the first to leave a review for <%= @caravan.name %>
     <% else %>
-    <% @caravan.reviews.each do |review| %>
-      <p id="review-<%= review.id %>"><%= review.content %></p>
-      <% review.rating.times do %>
-        <i class="fa-solid fa-star"></i>
-        <% end %>
+    <ul class="my-2">
+      <% @caravan.reviews.each do |review| %>
+        <li class="list-unstyled border-bottom">
+          <%= review.user.avatar.attached? ? cl_image_tag(review.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
+          <h6><%= review.created_at.strftime("%b %Y") %></h6>
+          <p id="review-<%= review.id %>"><%= review.content %></p>
+          <% review.rating.times do %>
+            <i class="fa-solid fa-star"></i>
+            <% end %>
+          <% end %>
+        </li>
       <% end %>
-    <% end %>
-
->>>>>>> master
+    </ul>
+  </div>
 </div>
