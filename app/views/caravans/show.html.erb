@@ -55,5 +55,21 @@
     </div>
   </div>
 
+<<<<<<< HEAD
  </div>
+=======
+  <div id="reviews">
+    <li><%= link_to "add a review",  new_caravan_review_path(@caravan) %></li>
+    <% if @caravan.reviews.blank? %>
+      Be the first to leave a review for <%= @caravan.name %>
+    <% else %>
+    <% @caravan.reviews.each do |review| %>
+      <p id="review-<%= review.id %>"><%= review.content %></p>
+      <% review.rating.times do %>
+        <i class="fa-solid fa-star"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+
+>>>>>>> master
 </div>
