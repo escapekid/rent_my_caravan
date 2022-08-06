@@ -1,8 +1,19 @@
 <div class="container">
-  <h1>All our caravans (<%= Caravan.count %>)</h1>
+  <h1>All our caravans (<%= @caravans.size %>)</h1>
 
   <div class="row">
     <div class="col-6">
+
+      <%# search form %>
+      <%= form_tag caravans_path, method: :get do %>
+        <%= label_tag :city, 'Searching for caravans in:' %>
+        <%= text_field_tag :city, "add a city"%>
+        <%= label_tag :radius, "Search radius" %>
+        <%= select_tag :radius, options_for_select([5, 10, 20, 50, 100]) %>
+        <%= submit_tag "Find caravans", class: "button-success-flat" %>
+      <% end %>
+
+      <%# index list %>
       <div class="row mt-5">
         <% @caravans.each do |caravan| %>
           <%= link_to caravan_path(caravan) do %>

@@ -2,7 +2,15 @@ class CaravansController < ApplicationController
   before_action :set_caravan, only: [:show, :destroy]
 
   def index
-    @caravans = Caravan.all
+
+    if params[:city].present? && params[:radius].present?
+        @city = params[:city]
+        @radius = params[:radius].to_i
+        @caravans = Caravan.near(@city, @radius)
+    else
+      @caravans = Caravan.all
+    end
+
     @markers = @caravans.geocoded.map do |caravan|
       {
         lat: caravan.latitude,
@@ -10,7 +18,6 @@ class CaravansController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { caravan: caravan })
       }
     end
-
   end
 
   def new
@@ -47,6 +54,6 @@ class CaravansController < ApplicationController
   end
 
   def caravan_params
-    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests, :photo)
+    params.require(:caravan).permit(:name, :price, :description, :address, :availability, :number_of_guests, :photo, :city, :radius)
   end
 end
