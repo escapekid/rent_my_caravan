@@ -47,4 +47,11 @@
       <% end %>
     </div>
   </div>
+  <div class="container">
+  <h2>Review of caravan</h1>
+  <% @caravan.reviews.each do |review| %>
+   <%= review.content %>
+   <%= review.rating %>
+   <% end %>
+ </div>
 </div>
