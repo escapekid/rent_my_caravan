@@ -25,6 +25,7 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(confirmed: true)
+    redirect_to dashboard_path
   end
 
   def destroy
