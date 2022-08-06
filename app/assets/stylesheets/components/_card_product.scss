@@ -1,7 +1,7 @@
 .card-product {
   overflow: hidden;
   height: 180px;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.175) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.05) 75%);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -33,8 +33,20 @@
 .card-product .description {
   overflow: hidden;
   line-height: 1.4rem;
-  max-height: 4.2rem;
+  height: 80px;
   text-overflow: ellipsis;
+  content: "";
+  position: relative;
+}
+
+.card-product .overlay {
+  content: "";
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, #e9e9e9 90%);
 }
 
 .card-product .card-product-infos {
