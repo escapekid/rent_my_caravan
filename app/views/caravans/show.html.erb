@@ -7,7 +7,7 @@
             <div class="button d-flex ms-3"><i class="fas fa-arrow-alt-to-left"></i> Back to list</div>
           <% end %>
         </div>
-        <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key) : cl_image_tag("caravan.avif") %>
+        <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key, class:"img-fluid") : cl_image_tag("caravan.avif", class:"img-fluid") %>
       <div class="d-flex my-2 py-2">
         <%= @caravan.user.avatar.attached? ? cl_image_tag(@caravan.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
         <div class="mx-3">
@@ -26,6 +26,11 @@
       </div>
         <h3>About</h3>
         <p><%= @caravan.description %></p>
+        <h3>Review of caravan</h3>
+        <% @caravan.reviews.each do |review| %>
+        <%= review.content %>
+        <%= review.rating %>
+        <% end %>
     </div>
     <div class="col-3">
       <% if @caravan.user == current_user %>
@@ -33,13 +38,15 @@
             <p class="button-success-flat text-center"><i class="fa-solid fa-trash-can me-2"> </i>Delete your caravan</p>
         <% end %>
       <% else  %>
-        <h1>Book this caravan</h1>
-        <div class="container">
-          <%= simple_form_for [ @caravan, @booking] do |f| %>
-          <%= f.input :start_date, html5: true %>
-          <%= f.input :end_date, html5: true %>
-          <%= f.submit "Book now", class: "button-success-flat btn-block" %>
-          <% end%>
+        <div class="border border-secondary mt-3 p-2 rounded-2 position-sticky top-0">
+          <h1>Book this caravan</h1>
+          <div class="container">
+            <%= simple_form_for [ @caravan, @booking] do |f| %>
+            <%= f.input :start_date, html5: true %>
+            <%= f.input :end_date, html5: true %>
+            <%= f.submit "Book now", class: "button-success-flat btn-block" %>
+            <% end%>
+          </div>
         </div>
       <% end %>
     </div>
@@ -62,4 +69,5 @@
         </li>
       <% end %>
     </ul>
+  </div>
 </div>
