@@ -2,7 +2,6 @@ class CaravansController < ApplicationController
   before_action :set_caravan, only: [:show, :destroy]
 
   def index
-
     if params[:city].present? && params[:radius].present?
         @city = params[:city]
         @radius = params[:radius].to_i
@@ -10,7 +9,7 @@ class CaravansController < ApplicationController
     else
       @caravans = Caravan.all
     end
-
+    
     @markers = @caravans.geocoded.map do |caravan|
       {
         lat: caravan.latitude,
@@ -37,6 +36,7 @@ class CaravansController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
   end
 
   def destroy

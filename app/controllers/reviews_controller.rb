@@ -8,8 +8,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     @review.caravan = Caravan.find(params[:caravan_id])
-    @review.save
-    redirect_to caravan_path(@caravan)
+    if @review.save
+      redirect_to caravan_path(@caravan)
+    else
+      render 'caravans/show'
+    end
   end
 
   private

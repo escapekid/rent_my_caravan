@@ -36,10 +36,15 @@
                     <p class="fas fa-user-group me-2"></p>
                     <p><%= caravan.number_of_guests %></p>
                   </div>
-                  <div class='d-flex'>
+                  <div class='d-flex me-4'>
                     <p class="fas fa-euro-sign me-2"></p>
                     <p><%= caravan.price %></p>
                   </div>
+                  <div class='d-flex me-4'>
+                    <p class="fa-solid fa-star me-2"></p>
+                    <p><%= caravan.reviews.average(:rating) %></p>
+                  </div>
+
                 </div>
               </div>
             </div>

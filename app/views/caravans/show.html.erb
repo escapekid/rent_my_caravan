@@ -7,7 +7,7 @@
             <div class="button d-flex ms-3"><i class="fas fa-arrow-alt-to-left"></i> Back to list</div>
           <% end %>
         </div>
-        <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key, effect: "shadow:90", :x=>15, :y=>15, :color=>"#0000001a") : cl_image_tag("caravan.avif", effect:"shadow:90", :x=>15, :y=>15, color:"#0000001a") %>
+        <%= @caravan.photo.attached? ? cl_image_tag(@caravan.photo.key) : cl_image_tag("caravan.avif") %>
       <div class="d-flex my-2 py-2">
         <%= @caravan.user.avatar.attached? ? cl_image_tag(@caravan.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
         <div class="mx-3">
@@ -47,11 +47,18 @@
       <% end %>
     </div>
   </div>
-  <div class="container">
-  <h2>Review of caravan</h1>
-  <% @caravan.reviews.each do |review| %>
-   <%= review.content %>
-   <%= review.rating %>
-   <% end %>
- </div>
+
+  <div id="reviews">
+    <li><%= link_to "add a review",  new_caravan_review_path(@caravan) %></li>
+    <% if @caravan.reviews.blank? %>
+      Be the first to leave a review for <%= @caravan.name %>
+    <% else %>
+    <% @caravan.reviews.each do |review| %>
+      <p id="review-<%= review.id %>"><%= review.content %></p>
+      <% review.rating.times do %>
+        <i class="fa-solid fa-star"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+
 </div>
