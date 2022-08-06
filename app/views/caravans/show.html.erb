@@ -26,11 +26,6 @@
       </div>
         <h3>About</h3>
         <p><%= @caravan.description %></p>
-        <h3>Review of caravan</h3>
-        <% @caravan.reviews.each do |review| %>
-        <%= review.content %>
-        <%= review.rating %>
-        <% end %>
     </div>
     <div class="col-3">
       <% if @caravan.user == current_user %>
@@ -56,18 +51,18 @@
     <% if @caravan.reviews.blank? %>
       Be the first to leave a review for <%= @caravan.name %>
     <% else %>
-    <ul class="my-2">
-      <% @caravan.reviews.each do |review| %>
-        <li class="list-unstyled border-bottom">
-          <%= review.user.avatar.attached? ? cl_image_tag(review.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
-          <h6><%= review.created_at.strftime("%b %Y") %></h6>
-          <p id="review-<%= review.id %>"><%= review.content %></p>
-          <% review.rating.times do %>
-            <i class="fa-solid fa-star"></i>
+      <ul class="my-2">
+        <% @caravan.reviews.each do |review| %>
+          <li class="list-unstyled border-bottom">
+            <%= review.user.avatar.attached? ? cl_image_tag(review.user.avatar.key, class: "avatar-square") : cl_image_tag("f3bv88cl12x3bjrtbkwdjzb6hz6t", class: "avatar-square") %>
+            <h6><%= review.created_at.strftime("%b %Y") %></h6>
+            <p id="review-<%= review.id %>"><%= review.content %></p>
+            <% review.rating.times do %>
+              <i class="fa-solid fa-star"></i>
+              <% end %>
             <% end %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+          </li>
+        <% end %>
+      </ul>
   </div>
 </div>
